@@ -35,20 +35,44 @@ namespace Revisao
                         
                         alunos[indiceAluno] = aluno;
                         indiceAluno++;
-                        
+
                         break;
                     case "2":
                         //TODO: Listar Alunos
+                        Console.Clear();
+                        Console.WriteLine("Lista de Alunos e Notas:");
+                        Console.WriteLine();  
                         foreach (var a in alunos)
                         {
                             if (!string.IsNullOrEmpty(a.Nome))
                             {
-                                Console.WriteLine($"Aluno: {a.Nome} - Nota: {a.Nota}");    
+                                Console.WriteLine($"    * Aluno: {a.Nome} - Nota: {a.Nota}");    
                             }
-                        }    
+                        }
+                        Console.WriteLine();
+                        Console.Write("Precione qualquer tecla para voltar");
+                        Console.ReadLine();  
                         break;
                     case "3":
                         //TODO: Calcular Média Geral
+                        Console.Clear();
+                        Console.WriteLine("Detalhamento:");
+                        Console.WriteLine();
+                        decimal notaTotal = 0;
+                        var nrAlunos = 0;
+                        for (int i = 0; i < alunos.Length; i++)
+                        {
+                            if (!string.IsNullOrEmpty(alunos[i].Nome))
+                            {
+                                notaTotal = notaTotal + alunos[i].Nota;
+                                nrAlunos++;
+                            }
+                        }
+                        var mediaGeral = notaTotal / nrAlunos;
+                        Console.WriteLine($"    * Média Geral: {mediaGeral}");
+                        Console.WriteLine();
+                        Console.Write("Precione qualquer tecla para voltar");
+                        Console.ReadLine();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -60,6 +84,8 @@ namespace Revisao
 
         private static string ObterOpcaoUsuario()
         {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("****************************************************");
             Console.WriteLine("*    Revisão DIO - ALUNOS                          *");
             Console.WriteLine("*                                                  *");
